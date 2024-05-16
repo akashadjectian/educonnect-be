@@ -2,10 +2,12 @@ package com.edu.entity;
 
 import java.util.List;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 
@@ -34,31 +36,16 @@ public class Institute {
 	
 	private String description;
 	
-	@OneToMany
+	@ManyToMany(cascade = CascadeType.ALL)
 	private List<Course> courses;
-
-	@OneToMany
-	private List<Student> students;
 	
-	@OneToMany
-	private List<Teacher> teachers;
-	
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
 	private Address address;
 	
 	@OneToMany
 	private List<SocialMediaLink> socialmediaLinks;
 
 	private Boolean status;
-
-	@Override
-	public String toString() {
-		return "Institute [id=" + id + ", name=" + name + ", directorName=" + directorName + ", officialMobile="
-				+ officialMobile + ", watsappNumber=" + watsappNumber + ", email1=" + email1 + ", email2=" + email2
-				+ ", establishedDate=" + establishedDate + ", facilities=" + facilities + ", description=" + description
-				+ ", courses=" + courses + ", students=" + students + ", teachers=" + teachers + ", address=" + address
-				+ ", socialmediaLinks=" + socialmediaLinks + ", status=" + status + "]";
-	}
 
 	public Integer getId() {
 		return id;
@@ -148,22 +135,6 @@ public class Institute {
 		this.courses = courses;
 	}
 
-	public List<Student> getStudents() {
-		return students;
-	}
-
-	public void setStudents(List<Student> students) {
-		this.students = students;
-	}
-
-	public List<Teacher> getTeachers() {
-		return teachers;
-	}
-
-	public void setTeachers(List<Teacher> teachers) {
-		this.teachers = teachers;
-	}
-
 	public Address getAddress() {
 		return address;
 	}
@@ -188,10 +159,23 @@ public class Institute {
 		this.status = status;
 	}
 
+	@Override
+	public String toString() {
+		return "Institute [id=" + id + ", name=" + name + ", directorName=" + directorName + ", officialMobile="
+				+ officialMobile + ", watsappNumber=" + watsappNumber + ", email1=" + email1 + ", email2=" + email2
+				+ ", establishedDate=" + establishedDate + ", facilities=" + facilities + ", description=" + description
+				+ ", courses=" + courses + ", address=" + address + ", socialmediaLinks=" + socialmediaLinks
+				+ ", status=" + status + "]";
+	}
+
+	public Institute() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
 	public Institute(Integer id, String name, String directorName, String officialMobile, String watsappNumber,
 			String email1, String email2, String establishedDate, String facilities, String description,
-			List<Course> courses, List<Student> students, List<Teacher> teachers, Address address,
-			List<SocialMediaLink> socialmediaLinks, Boolean status) {
+			List<Course> courses, Address address, List<SocialMediaLink> socialmediaLinks, Boolean status) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -204,18 +188,11 @@ public class Institute {
 		this.facilities = facilities;
 		this.description = description;
 		this.courses = courses;
-		this.students = students;
-		this.teachers = teachers;
 		this.address = address;
 		this.socialmediaLinks = socialmediaLinks;
 		this.status = status;
 	}
 
-	public Institute() {
-		super();
-	}
-	
-	
 	
 
 	

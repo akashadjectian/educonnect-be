@@ -29,7 +29,7 @@ public class User {
 	    private String email;
 
 	    @NonNull
-	    @JsonIgnore
+	    
 	    private String password;
 	    
 	    @NonNull

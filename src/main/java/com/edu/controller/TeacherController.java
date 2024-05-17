@@ -48,7 +48,7 @@ public class TeacherController {
 	    }
 
 		@PostMapping("/update")
-		public ResponseEntity<Object> updateTeacher(@ModelAttribute Teacher teacher) {
+		public ResponseEntity<Object> updateTeacher(@RequestBody Teacher teacher) {
 			
 		    try {
 		         this.teacherService.updateTeacher(teacher);

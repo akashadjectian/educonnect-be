@@ -1,5 +1,6 @@
 package com.edu.entity;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -19,7 +20,7 @@ public class Course {
     private String instructor;
     private String schedule;
     private String prerequisites;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     private Institute institute;
     private int enrollmentCapacity;
     private boolean status;

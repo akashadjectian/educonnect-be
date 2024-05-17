@@ -70,15 +70,15 @@ public class TeacherController {
 		}
 		
 		@DeleteMapping("/delete/{id}")
-		public ResponseEntity<String> deleteTeacher(@PathVariable Integer id){
+		public ResponseEntity<ResponseMessage> deleteTeacher(@PathVariable Integer id){
 			if(id != null) {
 				if(teacherService.deleteTeacher(id)) {
-					return ResponseEntity.ok().body("teacher is deleted successfully ");
+					return ResponseEntity.ok().body(new ResponseMessage("teacher is deleted successfully "));
 				}else {
-					return ResponseEntity.ok().body("teacher is not exist ");
+					return ResponseEntity.ok().body(new ResponseMessage("teacher is not exist"));
 				}
 			}
-	    	return ResponseEntity.ok().body("deleted");
+	    	return ResponseEntity.ok().body(new ResponseMessage("deleted"));
 	    }
 		
 		

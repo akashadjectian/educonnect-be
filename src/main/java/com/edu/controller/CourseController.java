@@ -5,11 +5,14 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.edu.entity.Course;
@@ -18,6 +21,8 @@ import com.edu.exception.ResponseMessage;
 import com.edu.service.CourseService;
 
 @RestController
+@RequestMapping("/course")
+@CrossOrigin("*")
 public class CourseController {
 
 	
@@ -26,8 +31,10 @@ public class CourseController {
 	
 	//for save Course
 		@PostMapping("/add")
-	    public ResponseEntity<Object> addCourse(@ModelAttribute Course course) {
+	    public ResponseEntity<Object> addCourse(@RequestBody Course course) {
 	        try {
+	        	System.out.println(course);
+	        	course.setStatus(true);
 	            boolean saved = this.courseService.saveCourse(course);
 	            if (saved) {
 	                return ResponseEntity.ok(new ResponseMessage(course.getId() +" New course saved successfully"));

@@ -8,13 +8,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.edu.dto.LoginCredentials;
+import com.edu.dto.UserDetailsDto;
 import com.edu.entity.User;
+import com.edu.exception.ResponseMessage;
 import com.edu.service.UserService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -78,6 +81,25 @@ public class MainController {
 			e.printStackTrace();
 		}
 		return "not change into json";	
+	}
+	
+	@GetMapping("/get-one/{username}")
+	public  ResponseEntity<Object> getUserBYUsername(@PathVariable String username){
+		System.err.println(" inside the controller of the usernma e "+username);
+		if(username != null) {
+			ResponseMessage responseMessage   = new ResponseMessage();
+			
+			UserDetailsDto user = this.userService.getUserBYUsername(username);
+			if(user != null) {
+				return ResponseEntity.ok().body(user);
+				
+			}else {
+				 responseMessage.setresponseMessage("user is not found");
+				return ResponseEntity.ok().body(responseMessage);			}
+		}else {
+			return ResponseEntity.ok().body("id is null");
+		}
+		
 	}
 	
 	

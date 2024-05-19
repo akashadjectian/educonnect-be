@@ -1,13 +1,13 @@
 package com.edu.service;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.edu.dao.UserRepository;
 import com.edu.dto.LoginCredentials;
+import com.edu.dto.UserDetailsDto;
 import com.edu.entity.User;
 
 @Service
@@ -17,6 +17,7 @@ public class UserService {
 	private UserRepository userRepository;
 	
 	public void save(User user) {
+		user.setStatus(true);
 		this.userRepository.save(user);
 	}
 	
@@ -66,5 +67,22 @@ public class UserService {
 		return this.userRepository.getRoleByUsername(username);
 	}
 	
+	public UserDetailsDto getUserBYUsername(String username) {
+		
+		User user = this.userRepository.findByUsername(username);
+		
+		if(user != null) {
+			UserDetailsDto userdto  = new UserDetailsDto();
+			userdto.setId(user.getId());
+			userdto.setUsername(user.getUsername());
+			userdto.setEmail(user.getEmail());
+			userdto.setRole(user.getRole());
+			userdto.setStatus(user.getStatus());
+			return userdto;
+			
+		}
+		
+		return null;
+	}
 	
 }

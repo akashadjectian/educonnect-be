@@ -33,8 +33,10 @@ public class TeacherService {
 	}
 
 	//for getting all teacherlist 
-	public List<Teacher> getAllTeacher(){		
-		List<Teacher> teacherlist = (List<Teacher>)teacherRepository.findAll(); 
+	public List<Teacher> getAllTeacher(){	
+		System.out.println("wertyuio");
+		 List<Teacher> teacherlist = (List<Teacher>) this.teacherRepository.findAll();
+		 System.out.println("wertyuio"+teacherlist);
 		return teacherlist;
 	}
 

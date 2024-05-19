@@ -30,7 +30,7 @@ public class CourseController {
 	private CourseService courseService;
 	
 	//for save Course
-		@PostMapping("/add")
+		@PostMapping("/save")
 	    public ResponseEntity<Object> addCourse(@RequestBody Course course) {
 	        try {
 	        	System.out.println(course);

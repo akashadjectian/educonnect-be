@@ -8,7 +8,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -65,8 +64,9 @@ public class TeacherController {
 		
 		@GetMapping("/get")
 		public ResponseEntity<List<Teacher>> getAllTeacher(){
-			List<Teacher> Teacherlist = (List<Teacher>) this.teacherService.getAllTeacher();
-			return ResponseEntity.ok().body(Teacherlist);
+			List<Teacher> teacherlist =  this.teacherService.getAllTeacher();
+			System.out.println("wertyuio"+teacherlist);
+			return ResponseEntity.ok().body(teacherlist);
 		}
 		
 		@DeleteMapping("/delete/{id}")

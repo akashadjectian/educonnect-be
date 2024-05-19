@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import com.edu.entity.Institute;
 import com.edu.exception.CustomException;
@@ -94,6 +95,15 @@ public class InstituteController {
 		return ResponseEntity.ok().body(" id is null ");
 		
 	}
+	
+	
+	@GetMapping("/get-searchresult")
+	public ResponseEntity<List<Institute>> getSearchResultInstitute(@RequestParam String searchvalue){
+		List<Institute> Institutelist = (List<Institute>) this.instituteService.getSearchInstitute(searchvalue);
+		return ResponseEntity.ok().body(Institutelist);
+	}
+	
+	
 	
 
 }

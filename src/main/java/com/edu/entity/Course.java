@@ -1,5 +1,7 @@
 package com.edu.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -20,15 +22,19 @@ public class Course {
     private String instructor;
     private String schedule;
     private String prerequisites;
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne()
+    @JsonBackReference
     private Institute institute;
     private int enrollmentCapacity;
     private boolean status;
+	
+    
+    
 	@Override
 	public String toString() {
 		return "Course [id=" + id + ", courseId=" + courseId + ", courseName=" + courseName + ", description="
 				+ description + ", instructor=" + instructor + ", schedule=" + schedule + ", prerequisites="
-				+ prerequisites + ", institute=" + institute + ", enrollmentCapacity=" + enrollmentCapacity
+				+ prerequisites + ", enrollmentCapacity=" + enrollmentCapacity
 				+ ", status=" + status + "]";
 	}
 	public Integer getId() {

@@ -2,12 +2,13 @@ package com.edu.entity;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 
@@ -36,7 +37,8 @@ public class Institute {
 	
 	private String description;
 	
-	@ManyToMany(cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "institute", cascade = CascadeType.ALL)
+	@JsonManagedReference
 	private List<Course> courses;
 	
 	@OneToOne(cascade = CascadeType.ALL)
@@ -46,6 +48,20 @@ public class Institute {
 	private List<SocialMediaLink> socialmediaLinks;
 
 	private Boolean status;
+	
+	
+	
+	private String username;
+
+	
+	
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
 
 	public Integer getId() {
 		return id;
@@ -165,7 +181,7 @@ public class Institute {
 				+ officialMobile + ", watsappNumber=" + watsappNumber + ", email1=" + email1 + ", email2=" + email2
 				+ ", establishedDate=" + establishedDate + ", facilities=" + facilities + ", description=" + description
 				+ ", courses=" + courses + ", address=" + address + ", socialmediaLinks=" + socialmediaLinks
-				+ ", status=" + status + "]";
+				+ ", status=" + status + ", username=" + username + "]";
 	}
 
 	public Institute() {
@@ -175,7 +191,8 @@ public class Institute {
 
 	public Institute(Integer id, String name, String directorName, String officialMobile, String watsappNumber,
 			String email1, String email2, String establishedDate, String facilities, String description,
-			List<Course> courses, Address address, List<SocialMediaLink> socialmediaLinks, Boolean status) {
+			List<Course> courses, Address address, List<SocialMediaLink> socialmediaLinks, Boolean status,
+			String username) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -191,11 +208,9 @@ public class Institute {
 		this.address = address;
 		this.socialmediaLinks = socialmediaLinks;
 		this.status = status;
+		this.username = username;
 	}
 
-	
-
-	
 	
 	
 	

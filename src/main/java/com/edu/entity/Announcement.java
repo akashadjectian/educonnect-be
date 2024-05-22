@@ -19,7 +19,7 @@ public class Announcement {
 	private String description;
 	private Date createdDate;
 	private Date lastDate;
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne()
 	private Institute institute;
 	private Boolean status;
 	

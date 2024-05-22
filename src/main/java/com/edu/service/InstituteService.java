@@ -63,6 +63,12 @@ public List<Institute> getSearchInstitute(String searchvalue){
 }
 
 
+public Institute getByUserName(String username){		
+	Institute institute = instituteRepository.findByUsername(username); 
+	return institute;
+}
+
+
 
 
 }

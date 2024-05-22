@@ -100,5 +100,13 @@ public class AnnouncementController {
 			return ResponseEntity.ok().body(" id is null ");
 			
 		}
+		
+		
+		@GetMapping("/get-by-institute/{id}")
+		public ResponseEntity<List<Announcement>> getAnnouncmentByInstitute(@PathVariable Integer id){
+			List<Announcement> Announcementlist = (List<Announcement>) this.announcementService.getAnnouncmentByInstitute(id);
+			return ResponseEntity.ok().body(Announcementlist);
+			
+		}
 	
 }

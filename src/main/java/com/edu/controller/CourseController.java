@@ -34,11 +34,12 @@ public class CourseController {
 	    public ResponseEntity<Object> addCourse(@RequestBody Course course) {
 	        try {
 	        	System.out.println(course);
-	        	course.setStatus(true);
 	            boolean saved = this.courseService.saveCourse(course);
 	            if (saved) {
+	            	System.out.println(course);
 	                return ResponseEntity.ok(new ResponseMessage(course.getId() +" New course saved successfully"));
 	            } else {
+	            	System.out.println(course);
 	                throw new CustomException("Failed to save course. Invalid data or duplicate entry.");
 	            }
 	        } 
@@ -50,7 +51,7 @@ public class CourseController {
 	    }
 
 		@PostMapping("/update")
-		public ResponseEntity<Object> updateCourse(@ModelAttribute Course course) {
+		public ResponseEntity<Object> updateCourse(@RequestBody Course course) {
 			
 		    try {
 		         this.courseService.updateCourse(course);

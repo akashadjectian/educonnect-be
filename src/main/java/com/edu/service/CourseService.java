@@ -17,6 +17,7 @@ public class CourseService {
 	// for saving the Course
 	public boolean saveCourse(Course course) {	
 		if(course != null) {
+			course.setStatus(true);
 			courseRepository.save(course);
 			return true;
 		}

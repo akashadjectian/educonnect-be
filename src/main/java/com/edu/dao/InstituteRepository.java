@@ -7,10 +7,11 @@ import org.springframework.stereotype.Repository;
 
 import com.edu.entity.Institute;
 
-@Repository
 public interface InstituteRepository extends JpaRepository<Institute, Integer> {
 
 	
 	
 	List<Institute> findByName(String name);
+	
+	Institute findByUsername(String username);
 }

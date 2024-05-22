@@ -87,6 +87,7 @@ public class InstituteController {
 		if(id != null) {
 			institute = this.instituteService.getOneInstitute(id);
 			if(institute != null) {
+				System.out.println(institute);
 				return ResponseEntity.ok().body(institute);
 			}else {
 				return ResponseEntity.ok().body("institute is not exist of this id "+ id);
@@ -101,6 +102,13 @@ public class InstituteController {
 	public ResponseEntity<List<Institute>> getSearchResultInstitute(@RequestParam String searchvalue){
 		List<Institute> Institutelist = (List<Institute>) this.instituteService.getSearchInstitute(searchvalue);
 		return ResponseEntity.ok().body(Institutelist);
+	}
+	
+	
+	@GetMapping("/getbyusername")
+	public ResponseEntity<Institute> getByUserName(@RequestParam String username){
+		Institute Institute = (Institute) this.instituteService.getByUserName(username);
+		return ResponseEntity.ok().body(Institute);
 	}
 	
 	

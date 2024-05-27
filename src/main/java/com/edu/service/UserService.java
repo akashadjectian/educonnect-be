@@ -5,9 +5,11 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.edu.dao.StudentRepository;
 import com.edu.dao.UserRepository;
 import com.edu.dto.LoginCredentials;
 import com.edu.dto.UserDetailsDto;
+import com.edu.entity.Student;
 import com.edu.entity.User;
 
 @Service
@@ -16,9 +18,19 @@ public class UserService {
 	@Autowired
 	private UserRepository userRepository;
 	
+	@Autowired 
+	private StudentRepository studentRepository;
+	
 	public void save(User user) {
 		user.setStatus(true);
 		this.userRepository.save(user);
+		if(user.getRole().equalsIgnoreCase("student")) {
+			Student student = new Student();
+			student.setFirstName(user.getUsername());
+			student.setEmail(user.getEmail());
+			student.setUsername(user.getUsername());
+			this.studentRepository.save(student);
+		}
 	}
 	
 	

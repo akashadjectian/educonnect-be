@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.edu.dao.StudentRepository;
+import com.edu.entity.Institute;
 import com.edu.entity.Student;
 
 @Service
@@ -56,5 +57,12 @@ public class StudentService {
 		}
 		return false;
 	}
+	
+	
+
+public Student getByUserName(String username){		
+	Student student = studentRepository.findByUsername(username); 
+	return student;
+}
 	
 }

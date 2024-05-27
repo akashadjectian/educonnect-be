@@ -6,13 +6,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.edu.dao.CourseRepository;
+import com.edu.dao.InstituteRepository;
 import com.edu.entity.Course;
+import com.edu.entity.Institute;
 
 @Service
 public class CourseService {
 
 	@Autowired
 	private CourseRepository courseRepository;
+	
+	@Autowired
+	private InstituteRepository instituteRepository;
 	
 	// for saving the Course
 	public boolean saveCourse(Course course) {	
@@ -55,5 +60,12 @@ public class CourseService {
 			return true;
 		}
 		return false;
+	}
+	
+	
+	public List<Course> getAllCOursesByInstitute(Integer id){
+		Institute institute = instituteRepository.findById(id).get();
+		List<Course> courselist = courseRepository.findByInstitute(institute); 
+		return courselist;
 	}
 }

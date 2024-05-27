@@ -12,8 +12,10 @@ public interface InstituteRepository extends JpaRepository<Institute, Integer> {
 
 	
 	
-	@Query("SELECT i FROM Institute i WHERE i.name ILIKE %:name%")
-    List<Institute> searchByName(@Param("name") String name);
+	@Query("SELECT DISTINCT i FROM Institute i " +
+		       "JOIN i.address a " +
+		       "WHERE a.city ILIKE CONCAT('%', :query, '%')")
+	List<Institute> searchByCity(@Param("query") String query);
 	
 	Institute findByUsername(String username);
 }

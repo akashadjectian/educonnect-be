@@ -58,7 +58,7 @@ public Boolean updateInstitute(Institute institute) {
 }
 
 public List<Institute> getSearchInstitute(String searchvalue){		
-	List<Institute> institutelist = (List<Institute>)instituteRepository.searchByName(searchvalue); 
+	List<Institute> institutelist = (List<Institute>)instituteRepository.searchByCity(searchvalue); 
 	return institutelist;
 }
 

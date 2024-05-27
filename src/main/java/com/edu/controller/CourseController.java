@@ -32,6 +32,7 @@ public class CourseController {
 	//for save Course
 		@PostMapping("/save")
 	    public ResponseEntity<Object> addCourse(@RequestBody Course course) {
+			System.err.println("inside  save controller ----------------------------------------------------------");
 	        try {
 	        	System.out.println(course);
 	            boolean saved = this.courseService.saveCourse(course);
@@ -44,8 +45,10 @@ public class CourseController {
 	            }
 	        } 
 	        catch (CustomException e) {
+	        	System.err.println(e);
 	            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ResponseMessage("Error saving course: " + e.getMessage()));
 	        } catch (Exception e) {
+	        	System.err.println(e);
 	            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new ResponseMessage("Error saving course: " + e.getMessage()));
 	        }
 	    }

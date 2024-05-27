@@ -63,8 +63,8 @@ public class CourseService {
 	}
 	
 	
-	public List<Course> getAllCOursesByInstitute(Integer id){
-		Institute institute = instituteRepository.findById(id).get();
+	public List<Course> getAllCoursesByInstitute(String username){
+		Institute institute = instituteRepository.findByUsername(username);
 		List<Course> courselist = courseRepository.findByInstitute(institute); 
 		return courselist;
 	}

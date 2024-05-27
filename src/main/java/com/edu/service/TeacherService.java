@@ -5,7 +5,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.edu.dao.InstituteRepository;
 import com.edu.dao.TeacherRepository;
+import com.edu.entity.Institute;
 import com.edu.entity.Teacher;
 
 @Service
@@ -13,6 +15,9 @@ public class TeacherService {
 
 	@Autowired
 	private TeacherRepository teacherRepository;
+	
+	@Autowired
+	private InstituteRepository instituteRepository;
 	
 	// for saving the Teacher
 	public boolean saveTeacher(Teacher teacher) {	
@@ -56,5 +61,12 @@ public class TeacherService {
 			return true;
 		}
 		return false;
+	}
+	
+	
+	public List<Teacher> getAllTeacherByInstituteUsername(String username){
+		Institute institute = instituteRepository.findByUsername(username);
+		List<Teacher> teacherlist = teacherRepository.findByInstitute(institute); 
+		return teacherlist;
 	}
 }

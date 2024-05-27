@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.edu.dao.AnnouncementRepository;
 import com.edu.dao.InstituteRepository;
 import com.edu.entity.Announcement;
+import com.edu.entity.Course;
 import com.edu.entity.Institute;
 
 @Service
@@ -68,6 +69,12 @@ public class AnnouncementService {
 		public List<Announcement> getAnnouncmentByInstitute(Integer id){
 			Institute institute = this.instituteRepository.findById(id).get();
 			List<Announcement> announcementlist = (List<Announcement>)announcementRepository.findByInstitute(institute); 
+			return announcementlist;
+		}
+		
+		public List<Announcement> getAnnouncmentByInstituteUsername(String username){
+			Institute institute = instituteRepository.findByUsername(username);
+			List<Announcement> announcementlist = announcementRepository.findByInstitute(institute); 
 			return announcementlist;
 		}
 }

@@ -103,9 +103,9 @@ public class CourseController {
 			
 		}
 		
-		@GetMapping("/get-by-instituteID/{id}")
-		public ResponseEntity<List<Course>> getAllCOursesByInstitute(@PathVariable Integer id){
-			List<Course> Courselist = (List<Course>) this.courseService.getAllCOursesByInstitute(id);
+		@GetMapping("/get-by-instituteID/{username}")
+		public ResponseEntity<List<Course>> getAllCOursesByInstitute(@PathVariable String username){
+			List<Course> Courselist = (List<Course>) this.courseService.getAllCoursesByInstitute(username);
 			return ResponseEntity.ok().body(Courselist);
 		}
 		

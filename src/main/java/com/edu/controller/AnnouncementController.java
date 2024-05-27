@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.edu.entity.Announcement;
+import com.edu.entity.Course;
 import com.edu.exception.CustomException;
 import com.edu.exception.ResponseMessage;
 import com.edu.service.AnnouncementService;
@@ -108,5 +109,12 @@ public class AnnouncementController {
 			return ResponseEntity.ok().body(Announcementlist);
 			
 		}
+		
+		@GetMapping("/get-by-instituteID/{username}")
+		public ResponseEntity<List<Announcement>> getAllAnnouncementByInstitute(@PathVariable String username){
+			List<Announcement> announcementlist = (List<Announcement>) this.announcementService.getAnnouncmentByInstituteUsername(username);
+			return ResponseEntity.ok().body(announcementlist);
+		}
+		
 	
 }

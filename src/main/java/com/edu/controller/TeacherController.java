@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.edu.entity.Announcement;
 import com.edu.entity.Teacher;
 import com.edu.exception.CustomException;
 import com.edu.exception.ResponseMessage;
@@ -95,5 +96,11 @@ public class TeacherController {
 			}
 			return ResponseEntity.ok().body(" id is null ");
 			
+		}
+		
+		@GetMapping("/get-by-instituteID/{username}")
+		public ResponseEntity<List<Teacher>> getAllAnnouncementByInstitute(@PathVariable String username){
+			List<Teacher> teacherlist = this.teacherService.getAllTeacherByInstituteUsername(username);
+			return ResponseEntity.ok().body(teacherlist);
 		}
 }

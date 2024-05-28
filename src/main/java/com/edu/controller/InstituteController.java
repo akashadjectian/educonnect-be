@@ -67,7 +67,7 @@ public class InstituteController {
 		List<Institute> Institutelist = (List<Institute>) this.instituteService.getAllInstitute();
 		return ResponseEntity.ok().body(Institutelist);
 	}
-	
+
 	@DeleteMapping("/delete/{id}")
 	public ResponseEntity<String> deleteInstitute(@PathVariable Integer id){
 		if(id != null) {

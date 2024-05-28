@@ -13,7 +13,7 @@ public class Student {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
-	private String name;
+	private String name;	
 	private String age;
 	@Override
 	public String toString() {

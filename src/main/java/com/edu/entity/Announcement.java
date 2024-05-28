@@ -2,11 +2,21 @@ package com.edu.entity;
 
 import java.util.Date;
 
+<<<<<<< HEAD
+=======
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
+import jakarta.persistence.CascadeType;
+>>>>>>> 3d35c4ddd9ae117935e22ba1166b8c3afca38efb
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
+<<<<<<< HEAD
+=======
+import jakarta.persistence.OneToOne;
+>>>>>>> 3d35c4ddd9ae117935e22ba1166b8c3afca38efb
 
 @Entity
 public class Announcement {
@@ -19,10 +29,12 @@ public class Announcement {
 	private Date createdDate;
 	private Date lastDate;
 	@ManyToOne()
+<<<<<<< HEAD
+=======
+	@JsonBackReference
+>>>>>>> 3d35c4ddd9ae117935e22ba1166b8c3afca38efb
 	private Institute institute;
 	private Boolean status;
-	
-	
 
 	public Integer getId() {
 		return id;
@@ -72,8 +84,6 @@ public class Announcement {
 		this.status = status;
 	}
 
-	
-	
 	public Institute getInstitute() {
 		return institute;
 	}
@@ -105,8 +115,4 @@ public class Announcement {
 		this.status = status;
 	}
 
-
-	
-	
-	
 }

@@ -41,6 +41,14 @@ public class Institute {
 	@JsonManagedReference
 	private List<Course> courses;
 	
+	@OneToMany(mappedBy = "institute", cascade = CascadeType.ALL)
+	@JsonManagedReference
+	private List<Announcement> announcement;
+	
+	@OneToMany(mappedBy = "institute", cascade = CascadeType.ALL)
+	@JsonManagedReference
+	private List<Teacher> teacher;
+	
 	@OneToOne(cascade = CascadeType.ALL)
 	private Address address;
 	
@@ -174,16 +182,26 @@ public class Institute {
 	public void setStatus(Boolean status) {
 		this.status = status;
 	}
+	
+	
 
-	@Override
-	public String toString() {
-		return "Institute [id=" + id + ", name=" + name + ", directorName=" + directorName + ", officialMobile="
-				+ officialMobile + ", watsappNumber=" + watsappNumber + ", email1=" + email1 + ", email2=" + email2
-				+ ", establishedDate=" + establishedDate + ", facilities=" + facilities + ", description=" + description
-				+ ", courses=" + courses + ", address=" + address + ", socialmediaLinks=" + socialmediaLinks
-				+ ", status=" + status + ", username=" + username + "]";
+	public List<Announcement> getAnnouncement() {
+		return announcement;
 	}
 
+	public void setAnnouncement(List<Announcement> announcement) {
+		this.announcement = announcement;
+	}
+
+	public List<Teacher> getTeacher() {
+		return teacher;
+	}
+
+	public void setTeacher(List<Teacher> teacher) {
+		this.teacher = teacher;
+	}
+
+	
 	public Institute() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -191,8 +209,8 @@ public class Institute {
 
 	public Institute(Integer id, String name, String directorName, String officialMobile, String watsappNumber,
 			String email1, String email2, String establishedDate, String facilities, String description,
-			List<Course> courses, Address address, List<SocialMediaLink> socialmediaLinks, Boolean status,
-			String username) {
+			List<Course> courses, List<Announcement> announcement, List<Teacher> teacher, Address address,
+			List<SocialMediaLink> socialmediaLinks, Boolean status, String username) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -205,10 +223,22 @@ public class Institute {
 		this.facilities = facilities;
 		this.description = description;
 		this.courses = courses;
+		this.announcement = announcement;
+		this.teacher = teacher;
 		this.address = address;
 		this.socialmediaLinks = socialmediaLinks;
 		this.status = status;
 		this.username = username;
+	}
+
+	@Override
+	public String toString() {
+		return "Institute [id=" + id + ", name=" + name + ", directorName=" + directorName + ", officialMobile="
+				+ officialMobile + ", watsappNumber=" + watsappNumber + ", email1=" + email1 + ", email2=" + email2
+				+ ", establishedDate=" + establishedDate + ", facilities=" + facilities + ", description=" + description
+				+ ", courses=" + courses + ", announcement=" + announcement + ", teacher=" + teacher + ", address="
+				+ address + ", socialmediaLinks=" + socialmediaLinks + ", status=" + status + ", username=" + username
+				+ "]";
 	}
 
 	

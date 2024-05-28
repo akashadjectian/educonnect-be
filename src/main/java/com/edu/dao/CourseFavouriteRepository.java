@@ -9,6 +9,6 @@ import com.edu.entity.CourseFavourite;
 
 public interface CourseFavouriteRepository extends JpaRepository<CourseFavourite, Integer> {
 
-	List<Course> findByStudentId(Integer id);
+	List<CourseFavourite> findByStudentId(Integer id);
 	
 }

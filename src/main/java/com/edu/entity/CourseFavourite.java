@@ -1,12 +1,10 @@
 package com.edu.entity;
 
-import java.util.List;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -19,18 +17,12 @@ public class CourseFavourite {
 	private Integer id;	
 	
 	private Integer studentId;
-	@OneToMany
-	private List<Course> courses;
 	
-	
-	
-	
-	
-	public CourseFavourite(Integer id, Integer studentId, List<Course> courses) {
-		super();
-		this.id = id;
-		this.studentId = studentId;
-		this.courses = courses;
+	@ManyToOne
+	private Course course;
+	@Override
+	public String toString() {
+		return "CourseFavourite [id=" + id + ", studentId=" + studentId + ", course=" + course + "]";
 	}
 	public Integer getId() {
 		return id;
@@ -44,7 +36,18 @@ public class CourseFavourite {
 	public void setStudentId(Integer studentId) {
 		this.studentId = studentId;
 	}
-	
+	public Course getCourse() {
+		return course;
+	}
+	public void setCourse(Course course) {
+		this.course= course;
+	}
+	public CourseFavourite(Integer id, Integer studentId, Course course) {
+		super();
+		this.id = id;
+		this.studentId = studentId;
+		this.course = course;
+	}
 	public CourseFavourite() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -52,16 +55,8 @@ public class CourseFavourite {
 	
 	
 	
-	public List<Course> getCourses() {
-		return courses;
-	}
-	public void setCourses(List<Course> courses) {
-		this.courses = courses;
-	}
-	@Override
-	public String toString() {
-		return "CourseFavourite [id=" + id + ", studentId=" + studentId + ", courses=" + courses + "]";
-	}
+	
+	
 	
 	
 	

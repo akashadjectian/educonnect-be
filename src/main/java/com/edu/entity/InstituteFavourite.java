@@ -1,12 +1,10 @@
 package com.edu.entity;
 
-import java.util.List;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -19,11 +17,11 @@ public class InstituteFavourite {
 	private Integer id;	
 	
 	private Integer studentId;
-	@OneToMany
-	private List<Institute> institutes;
+	 @ManyToOne
+	private Institute institute;
 	@Override
 	public String toString() {
-		return "InstituteFavourite [id=" + id + ", studentId=" + studentId + ", institutes=" + institutes + "]";
+		return "InstituteFavourite [id=" + id + ", studentId=" + studentId + ", institute=" + institute + "]";
 	}
 	public Integer getId() {
 		return id;
@@ -37,26 +35,24 @@ public class InstituteFavourite {
 	public void setStudentId(Integer studentId) {
 		this.studentId = studentId;
 	}
-	public List<Institute> getInstitutes() {
-		return institutes;
+	public Institute getInstitute() {
+		return institute;
 	}
-	public void setInstitutes(List<Institute> institutes) {
-		this.institutes = institutes;
+	public void setInstitute(Institute institute) {
+		this.institute = institute;
 	}
 	public InstituteFavourite() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public InstituteFavourite(Integer id, Integer studentId, List<Institute> institutes) {
+	public InstituteFavourite(Integer id, Integer studentId, Institute institute) {
 		super();
 		this.id = id;
 		this.studentId = studentId;
-		this.institutes = institutes;
+		this.institute = institute;
 	}
 	
-	
-	
-	
+	 
 	
 	
 	

@@ -12,11 +12,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.edu.entity.Course;
-import com.edu.entity.Institute;
+import com.edu.entity.CourseFavourite;
+import com.edu.entity.InstituteFavourite;
 import com.edu.entity.Student;
 import com.edu.exception.CustomException;
 import com.edu.exception.ResponseMessage;
@@ -112,23 +113,82 @@ public class StudentController {
 	}
 
 	@GetMapping("/get-favourite-courses/{id}")
-	public ResponseEntity<List<Course>> getFavouriteCourses(@PathVariable Integer id) {
+	public ResponseEntity<List<CourseFavourite>> getFavouriteCourses(@PathVariable Integer id) {
 		if (id != null) {
-			List<Course> courselist = this.courseFavouriteService.getAllCourses(id);
-			return ResponseEntity.ok().body(courselist);
+			List<CourseFavourite> coursefavouritelist = this.courseFavouriteService.getAllCourses(id);
+			return ResponseEntity.ok().body(coursefavouritelist);
 		}
 		return ResponseEntity.ok().body(null);
 
 	}
 
 	@GetMapping("/get-favourite-institutes/{id}")
-	public ResponseEntity<List<Institute>> getFavouriteInstitutes(@PathVariable Integer id) {
+	public ResponseEntity<List<InstituteFavourite>> getFavouriteInstitutes(@PathVariable Integer id) {
 		if (id != null) {
-			List<Institute> institutelist = this.instituteFavouriteService.getAllInstitutes(id);
-			return ResponseEntity.ok().body(institutelist);
+			List<InstituteFavourite> institutefavouritelist = this.instituteFavouriteService.getAllInstitutes(id);
+			return ResponseEntity.ok().body(institutefavouritelist);
 		}
 		return ResponseEntity.ok().body(null);
 
+	}
+	
+	
+	
+	
+	@PostMapping("/add-favourite-institute")
+	public ResponseEntity<ResponseMessage> addFavouriteInstitute(@RequestBody InstituteFavourite instituteFavourite) {
+
+		try {
+			this.instituteFavouriteService.add(instituteFavourite);
+			return ResponseEntity.ok().body(new ResponseMessage("Added To Favourites"));
+		} catch (CustomException e) {
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+					.body(new ResponseMessage("Error Added To Favourites: " + e.getMessage()));
+		} catch (Exception e) {
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+					.body(new ResponseMessage("Error Added To Favourites: " + e.getMessage()));
+		}
+
+	}
+	
+	@PostMapping("/add-favourite-course")
+	public ResponseEntity<ResponseMessage> addFavouriteCourse(@RequestBody CourseFavourite courseFavourite) {
+
+		try {
+			this.courseFavouriteService.add(courseFavourite);
+			return ResponseEntity.ok().body(new ResponseMessage("Added To Favourites"));
+		} catch (CustomException e) {
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+					.body(new ResponseMessage("Error Added To Favourites: " + e.getMessage()));
+		} catch (Exception e) {
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+					.body(new ResponseMessage("Error Added To Favourites: " + e.getMessage()));
+		}
+
+	}
+	
+	@DeleteMapping("/delete-favourite-course/{id}")
+	public ResponseEntity<ResponseMessage> deleteFavouriteCourse(@PathVariable Integer id) {
+		if (id != null) {
+			if (courseFavouriteService.delete(id)) {
+				return ResponseEntity.ok().body(new ResponseMessage("Removed From Favourite"));
+			} else {
+				return ResponseEntity.ok().body(new ResponseMessage("Error in removing"));
+			}
+		}
+		return ResponseEntity.ok().body(new ResponseMessage("Removed From Favourites"));
+	}
+	
+	@DeleteMapping("/delete-favourite-institute/{id}")
+	public ResponseEntity<ResponseMessage> deleteFavouriteInstitute(@PathVariable Integer id) {
+		if (id != null) {
+			if (instituteFavouriteService.delete(id)) {
+				return ResponseEntity.ok().body(new ResponseMessage("Removed From Favourite"));
+			} else {
+				return ResponseEntity.ok().body(new ResponseMessage("Error in removing"));
+			}
+		}
+		return ResponseEntity.ok().body(new ResponseMessage("Removed From Favourites"));
 	}
 
 }

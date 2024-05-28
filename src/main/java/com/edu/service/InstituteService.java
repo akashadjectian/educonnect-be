@@ -39,6 +39,8 @@ public List<Institute> getAllInstitute(){
 	return institutelist;
 }
 
+
+
 //for delete the institute
 public boolean deleteInstitute(Integer id) {
 	if(id!=null) {

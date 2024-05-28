@@ -2,12 +2,11 @@ package com.edu.entity;
 
 import java.util.Date;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.ManyToOne;
 
 @Entity
 public class Announcement {
@@ -19,7 +18,7 @@ public class Announcement {
 	private String description;
 	private Date createdDate;
 	private Date lastDate;
-	@OneToOne()
+	@ManyToOne()
 	private Institute institute;
 	private Boolean status;
 	

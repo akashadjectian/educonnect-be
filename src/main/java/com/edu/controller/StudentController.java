@@ -40,7 +40,7 @@ public class StudentController {
 
 	// for save Student
 	@PostMapping("/add")
-	public ResponseEntity<Object> addStudent(@ModelAttribute Student student) {
+	public ResponseEntity<Object> addStudent(@RequestBody Student student) {
 		try {
 			boolean saved = this.studentService.saveStudent(student);
 			if (saved) {

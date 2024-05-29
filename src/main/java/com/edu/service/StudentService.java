@@ -4,7 +4,9 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import com.edu.common.FileSaver;
 import com.edu.dao.StudentRepository;
 import com.edu.entity.Institute;
 import com.edu.entity.Student;
@@ -63,6 +65,17 @@ public class StudentService {
 public Student getByUserName(String username){		
 	Student student = studentRepository.findByUsername(username); 
 	return student;
+}
+
+public Boolean saveImage(Integer id, MultipartFile image) {
+	Student student = studentRepository.findById(id).get();
+	Boolean result = FileSaver.saveFile(image, image.getOriginalFilename(), student.getUsername());
+	if(result) {
+		student.setProfilePhoto(image.getOriginalFilename());
+		studentRepository.save(student);
+		return true;
+	}	
+	return false;
 }
 	
 }

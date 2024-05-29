@@ -2,6 +2,8 @@ package com.edu.entity;
 
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -20,6 +22,7 @@ public class Announcement {
 	private Date createdDate;
 	private Date lastDate;
 	@ManyToOne()
+	@JsonBackReference
 	private Institute institute;
 	private Boolean status;
 
@@ -82,7 +85,7 @@ public class Announcement {
 	@Override
 	public String toString() {
 		return "Announcement [id=" + id + ", name=" + name + ", description=" + description + ", createdDate="
-				+ createdDate + ", lastDate=" + lastDate + ", institute=" + institute + ", status=" + status + "]";
+				+ createdDate + ", lastDate=" + lastDate + ", status=" + status + "]";
 	}
 
 	public Announcement() {

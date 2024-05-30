@@ -204,7 +204,6 @@ public class Institute {
 	
 	public Institute() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public Institute(Integer id, String name, String directorName, String officialMobile, String watsappNumber,

@@ -9,6 +9,7 @@ import com.edu.dao.StudentRepository;
 import com.edu.dao.UserRepository;
 import com.edu.dto.LoginCredentials;
 import com.edu.dto.UserDetailsDto;
+import com.edu.entity.Address;
 import com.edu.entity.Student;
 import com.edu.entity.User;
 
@@ -29,6 +30,7 @@ public class UserService {
 			student.setFirstName(user.getUsername());
 			student.setEmail(user.getEmail());
 			student.setUsername(user.getUsername());
+			student.setAddress(new Address());
 			this.studentRepository.save(student);
 		}
 	}

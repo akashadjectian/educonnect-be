@@ -1,14 +1,13 @@
 package com.edu.entity;
 
 import java.util.List;
-
 import com.fasterxml.jackson.annotation.JsonBackReference;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
+
 
 @Entity
 public class Teacher {
@@ -30,7 +29,6 @@ public class Teacher {
 	@JsonBackReference
 	private Institute institute;
 
-	
 
 	@Override
 	public String toString() {
@@ -41,8 +39,8 @@ public class Teacher {
 
 	public Teacher() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
+	
 
 	public Teacher(Integer id, String name, String age, String mobile, String email, String experience,
 			List<String> subject, String highestQualification, String about, Institute institute) {

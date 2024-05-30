@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.edu.entity.CourseFavourite;
 import com.edu.entity.InstituteFavourite;
@@ -24,6 +25,8 @@ import com.edu.exception.ResponseMessage;
 import com.edu.service.CourseFavouriteService;
 import com.edu.service.InstituteFavouriteService;
 import com.edu.service.StudentService;
+
+import jakarta.mail.Multipart;
 
 @Controller
 @RequestMapping("/student")
@@ -40,7 +43,7 @@ public class StudentController {
 
 	// for save Student
 	@PostMapping("/add")
-	public ResponseEntity<Object> addStudent(@ModelAttribute Student student) {
+	public ResponseEntity<Object> addStudent(@RequestBody Student student) {
 		try {
 			boolean saved = this.studentService.saveStudent(student);
 			if (saved) {
@@ -58,7 +61,7 @@ public class StudentController {
 	}
 
 	@PostMapping("/update")
-	public ResponseEntity<Object> updateStudent(@ModelAttribute Student student) {
+	public ResponseEntity<Object> updateStudent(@RequestBody Student student) {
 
 		try {
 			this.studentService.updateStudent(student);
@@ -189,6 +192,16 @@ public class StudentController {
 			}
 		}
 		return ResponseEntity.ok().body(new ResponseMessage("Removed From Favourites"));
+	}
+	
+	
+	@PostMapping("/uploadImage")
+	public ResponseEntity<ResponseMessage> saveProfleImage(@RequestParam Integer id, @RequestParam MultipartFile image){
+		boolean result = studentService.saveImage(id,image);
+		if(result) {
+			return ResponseEntity.ok().body(new ResponseMessage("Image Uploaded Successfully"));
+		}
+		return ResponseEntity.ok().body(new ResponseMessage("Image not Uploaded"));
 	}
 
 }

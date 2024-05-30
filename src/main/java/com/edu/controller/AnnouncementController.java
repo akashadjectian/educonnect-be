@@ -13,10 +13,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.edu.entity.Announcement;
 import com.edu.entity.Course;
+import com.edu.entity.Reply;
 import com.edu.exception.CustomException;
 import com.edu.exception.ResponseMessage;
 import com.edu.service.AnnouncementService;
@@ -66,6 +68,7 @@ public class AnnouncementController {
 		    
 		}
 
+	
 
 		
 		@GetMapping("/get")
@@ -115,6 +118,8 @@ public class AnnouncementController {
 			List<Announcement> announcementlist = (List<Announcement>) this.announcementService.getAnnouncmentByInstituteUsername(username);
 			return ResponseEntity.ok().body(announcementlist);
 		}
+		
+		
 		
 	
 }

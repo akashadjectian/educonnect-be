@@ -2,21 +2,13 @@ package com.edu.entity;
 
 import java.util.Date;
 
-<<<<<<< HEAD
-=======
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
-import jakarta.persistence.CascadeType;
->>>>>>> 3d35c4ddd9ae117935e22ba1166b8c3afca38efb
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
-<<<<<<< HEAD
-=======
-import jakarta.persistence.OneToOne;
->>>>>>> 3d35c4ddd9ae117935e22ba1166b8c3afca38efb
 
 @Entity
 public class Announcement {
@@ -29,10 +21,7 @@ public class Announcement {
 	private Date createdDate;
 	private Date lastDate;
 	@ManyToOne()
-<<<<<<< HEAD
-=======
 	@JsonBackReference
->>>>>>> 3d35c4ddd9ae117935e22ba1166b8c3afca38efb
 	private Institute institute;
 	private Boolean status;
 
@@ -92,10 +81,12 @@ public class Announcement {
 		this.institute = institute;
 	}
 
+
+
 	@Override
 	public String toString() {
 		return "Announcement [id=" + id + ", name=" + name + ", description=" + description + ", createdDate="
-				+ createdDate + ", lastDate=" + lastDate + ", institute=" + institute + ", status=" + status + "]";
+				+ createdDate + ", lastDate=" + lastDate + ", status=" + status + "]";
 	}
 
 	public Announcement() {

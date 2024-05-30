@@ -22,6 +22,7 @@ public class Student {
 	private String studyClass;
 	private String schoolName;
 	private String username;
+
 	
 	@OneToOne(cascade = CascadeType.ALL)
 	private Address address;

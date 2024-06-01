@@ -62,8 +62,9 @@ public class ContactUsService {
 	}
 	
 	public boolean reply(Reply reply) {
-		
+		System.err.println(reply);
 		if(reply != null){
+			System.err.println(reply);
 			reply.setDate(new Date());
 			reply.setContactId(reply.getContactId());
 			this.replyRepository.save(reply);

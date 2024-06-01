@@ -32,6 +32,7 @@ public class ContactUsController {
 	
 	@PostMapping("/save")
     public ResponseEntity<Object> addContactUs(@RequestBody ContactUs contactUs) {
+		System.err.println("-----------------------------------"+contactUs);
         try {
         	
             boolean saved = this.contactUsService.saveContactUs(contactUs);
@@ -42,8 +43,10 @@ public class ContactUsController {
             }
         } 
         catch (CustomException e) {
+        	System.err.println(e);
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ResponseMessage("Error saving contactUs: " + e.getMessage()));
         } catch (Exception e) {
+        	System.err.println(e);
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new ResponseMessage("Error saving contactUs: " + e.getMessage()));
         }
     }

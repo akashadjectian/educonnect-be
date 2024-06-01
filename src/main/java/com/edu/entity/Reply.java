@@ -20,29 +20,6 @@ public class Reply {
 
 	private Date date;
 	private boolean status;
-	
-	
-	
-	
-	
-	public boolean isStatus() {
-		return status;
-	}
-	public void setStatus(boolean status) {
-		this.status = status;
-	}
-	public String getContactId() {
-		return contactId;
-	}
-	public void setContactId(String contactId) {
-		this.contactId = contactId;
-	}
-	public Date getDate() {
-		return date;
-	}
-	public void setDate(Date date) {
-		this.date = date;
-	}
 	public Integer getId() {
 		return id;
 	}
@@ -61,11 +38,32 @@ public class Reply {
 	public void setReply(String reply) {
 		this.reply = reply;
 	}
-	public Reply(Integer id, String email, String reply) {
+	public String getContactId() {
+		return contactId;
+	}
+	public void setContactId(String contactId) {
+		this.contactId = contactId;
+	}
+	public Date getDate() {
+		return date;
+	}
+	public void setDate(Date date) {
+		this.date = date;
+	}
+	public boolean isStatus() {
+		return status;
+	}
+	public void setStatus(boolean status) {
+		this.status = status;
+	}
+	public Reply(Integer id, String email, String reply, String contactId, Date date, boolean status) {
 		super();
 		this.id = id;
 		this.email = email;
 		this.reply = reply;
+		this.contactId = contactId;
+		this.date = date;
+		this.status = status;
 	}
 	public Reply() {
 		super();
@@ -73,8 +71,10 @@ public class Reply {
 	}
 	@Override
 	public String toString() {
-		return "Reply [id=" + id + ", email=" + email + ", reply=" + reply + "]";
+		return "Reply [id=" + id + ", email=" + email + ", reply=" + reply + ", contactId=" + contactId + ", date="
+				+ date + ", status=" + status + "]";
 	}
+	
 	
 	
 	

@@ -22,6 +22,7 @@ public class TeacherService {
 	// for saving the Teacher
 	public boolean saveTeacher(Teacher teacher) {	
 		if(teacher != null) {
+			teacher.setInstituteName(teacher.getInstitute().getName());
 			teacherRepository.save(teacher);
 			return true;
 		}

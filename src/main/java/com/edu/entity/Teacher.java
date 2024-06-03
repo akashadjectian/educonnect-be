@@ -22,11 +22,14 @@ public class Teacher {
 	private List<String> subject;
 	private String highestQualification;
 	private String about;
+	private String instituteName;
+
+
 	@ManyToOne()
 	@JsonBackReference
 	private Institute institute;
 
-	
+
 	@Override
 	public String toString() {
 		return "Teacher [id=" + id + ", name=" + name + ", age=" + age + ", mobile=" + mobile + ", email=" + email
@@ -54,6 +57,14 @@ public class Teacher {
 		this.institute = institute;
 	}
 
+	
+	public String getInstituteName() {
+		return instituteName;
+	}
+
+	public void setInstituteName(String instituteName) {
+		this.instituteName = instituteName;
+	}
 	public Integer getId() {
 		return id;
 	}

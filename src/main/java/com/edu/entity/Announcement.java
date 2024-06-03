@@ -10,7 +10,6 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
 
-
 @Entity
 public class Announcement {
 
@@ -81,6 +80,8 @@ public class Announcement {
 	public void setInstitute(Institute institute) {
 		this.institute = institute;
 	}
+
+
 
 	@Override
 	public String toString() {

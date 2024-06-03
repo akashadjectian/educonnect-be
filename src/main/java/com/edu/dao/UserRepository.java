@@ -12,4 +12,8 @@ public interface UserRepository extends JpaRepository<User, Integer> {
    User findByUsername(String username);
    @Query(nativeQuery = true, value = "SELECT role FROM users WHERE user_name = :username")
    String getRoleByUsername(@Param("username") String username);
+   @Query("SELECT CASE WHEN COUNT(u) > 0 THEN TRUE ELSE FALSE END FROM User u WHERE u.username = :username")
+   boolean existsByUsername(@Param("username") String username);
+   
+   User findByToken(String token);
 }

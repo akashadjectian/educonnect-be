@@ -25,8 +25,10 @@ public class User {
 	    private String username;
 
 	    @NonNull
-	    @Column(name = "email", unique = true)
+	    @Column(name = "email")
 	    private String email;
+	    private boolean varified ;
+	    private String token;
 
 	    @NonNull
 	    
@@ -46,25 +48,85 @@ public class User {
 
 
 
-	@Override
-	public String toString() {
-		return "User [id=" + id + ", username=" + username + ", email=" + email + ", password=" + password + ", role="
-				+ role + ", status=" + status + "]";
-	}
 
 
 
-
-
-	public User(Integer id, String username, String email, String password, String role, Boolean status) {
+	public User(Integer id, String username, String email, boolean varified, String token, String password,
+			String role, Boolean status) {
 		super();
 		this.id = id;
 		this.username = username;
 		this.email = email;
+		this.varified = varified;
+		this.token = token;
 		this.password = password;
 		this.role = role;
 		this.status = status;
 	}
+
+
+
+
+
+
+
+
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", username=" + username + ", email=" + email + ", varified=" + varified
+				+ ", token=" + token + ", password=" + password + ", role=" + role + ", status="
+				+ status + "]";
+	}
+
+
+
+
+
+
+
+
+	public boolean isVarified() {
+		return varified;
+	}
+
+
+
+
+
+
+
+
+	public void setVarified(boolean varified) {
+		this.varified = varified;
+	}
+
+
+
+
+
+
+
+
+	public String gettoken() {
+		return token;
+	}
+
+
+
+
+
+
+
+
+	public void settoken(String token) {
+		this.token = token;
+	}
+
+
+
+
+
+
 
 
 	public Integer getId() {

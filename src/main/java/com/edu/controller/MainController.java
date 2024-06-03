@@ -12,10 +12,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.edu.dto.LoginCredentials;
 import com.edu.dto.UserDetailsDto;
+import com.edu.dto.Username;
 import com.edu.entity.User;
 import com.edu.exception.ResponseMessage;
 import com.edu.service.UserService;
@@ -38,6 +40,19 @@ public class MainController {
 		return  ResponseEntity.ok().body("success");
 	}
 	
+	  @GetMapping("/verify-email")
+	    public String verifyEmail(@RequestParam("token") String token) {
+		  System.err.println("------------------------------------------------inside the verify --------------------------------------");
+	        boolean isVerified = userService.verifyEmailToken(token);
+	        if (isVerified) {
+	            return "Email successfully verified!";
+	        } else {
+	            return "Invalid verification token.";
+	        }
+	    }
+	
+	
+	
 	@GetMapping("/getUsers")
 	public ResponseEntity<Object> getAllUsers() {
 		 List<User> users =   this.userService.getAllUsers();
@@ -53,12 +68,19 @@ public class MainController {
 	
 		if(this.userService.isExist(loginCredentials)) {
 			if(this.userService.checkCredential(loginCredentials)) {
-				String role = this.userService.getRoleByUsername(loginCredentials.getUsername());
-				map.put("role",role);
-				map.put("response", "successful login");
-				map.put("success","true");
-				
-				return ResponseEntity.ok().body(this.convertIntoJson(map));
+				if(this.userService.isVerified(loginCredentials)) {
+					String role = this.userService.getRoleByUsername(loginCredentials.getUsername());
+					map.put("role",role);
+					map.put("response", "successful login");
+					map.put("success","true");
+					
+					return ResponseEntity.ok().body(this.convertIntoJson(map));					
+				}else {
+					map.put("response", "email  is not verified");
+					map.put("success","false");
+					return ResponseEntity.ok().body(this.convertIntoJson(map));	
+				}
+		
 			}
 			map.put("response", "password is wrong ");
 			map.put("success","false");
@@ -100,6 +122,16 @@ public class MainController {
 			return ResponseEntity.ok().body("id is null");
 		}
 		
+	}
+	@PostMapping("/check-user")
+	public ResponseEntity<Boolean> checkUserName(@RequestBody Username username){
+		System.err.println("---------------  "+username);
+		if(this.userService.checkUser(username.getUsername())) {
+			return ResponseEntity.ok().body(true);
+		}
+		
+	
+		return ResponseEntity.ok().body(false);
 	}
 	
 	

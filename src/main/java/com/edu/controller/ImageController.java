@@ -27,16 +27,20 @@ public class ImageController {
     public ResponseEntity<Resource> getPhoto(@PathVariable String photoName, @RequestParam String username) throws IOException {
         Path userDirectory = Paths.get(PHOTO_DIRECTORY + username);
         Path photoPath = userDirectory.resolve(photoName);
+        System.err.println("-----------------------------------inside pohote ");
  
 
         if (Files.exists(photoPath) && !Files.isDirectory(photoPath)) {
             Resource photoResource = new FileSystemResource(photoPath);
+            System.err.println("-----------------------------------inside pohote ");
+
             return ResponseEntity.ok()
                     .contentType(MediaType.IMAGE_JPEG)
                     .header(HttpHeaders.CONTENT_DISPOSITION, "inline; filename=\"" + photoName + "\"")
                     .body(photoResource);
         } else {
-            return ResponseEntity.notFound().build();
+        	System.err.println("-------------------else--------");
+            return ResponseEntity.notFound().build().ok().body(null);
         }
     }
 }

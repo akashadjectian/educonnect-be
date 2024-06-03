@@ -71,22 +71,22 @@ public class MainController {
 				if(this.userService.isVerified(loginCredentials)) {
 					String role = this.userService.getRoleByUsername(loginCredentials.getUsername());
 					map.put("role",role);
-					map.put("response", "successful login");
+					map.put("response", "Successful Login");
 					map.put("success","true");
 					
 					return ResponseEntity.ok().body(this.convertIntoJson(map));					
 				}else {
-					map.put("response", "email  is not verified");
+					map.put("response", "Please verify your email !!");
 					map.put("success","false");
 					return ResponseEntity.ok().body(this.convertIntoJson(map));	
 				}
 		
 			}
-			map.put("response", "password is wrong ");
+			map.put("response", "Incorrect Password");
 			map.put("success","false");
 			return ResponseEntity.ok().body(map);
 		}
-		map.put("response", "user not found");
+		map.put("response", "User Not Found");
 		map.put("success","false");
 		return ResponseEntity.ok().body(map);
 	}
@@ -132,6 +132,12 @@ public class MainController {
 		
 	
 		return ResponseEntity.ok().body(false);
+	}
+	
+	@GetMapping("/send-verification-email")
+	public  ResponseEntity<ResponseMessage> sendVerificationEmail(@RequestParam String email){
+		String result = userService.sendVerificationEmail(email);
+			return ResponseEntity.ok().body(new ResponseMessage(result));
 	}
 	
 	

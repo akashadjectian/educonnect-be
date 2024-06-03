@@ -155,6 +155,21 @@ public class UserService {
 		return false;
 	}
 	
+	public String sendVerificationEmail(String email) {
+		try {
+			User user = userRepository.findByEmail(email);
+			if(user == null) {
+				return "User with this email doesn't exist";
+			}
+			emailService.sendVerificationEmail(user.getEmail(), user.gettoken());
+			return "Check your Email and Verify";
+		}
+		catch(Exception e) {
+			return "Send Email Again";
+		}
+		
+	}
+	
 	
 	
 	

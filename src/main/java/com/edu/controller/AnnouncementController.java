@@ -55,7 +55,6 @@ public class AnnouncementController {
 		public ResponseEntity<Object> updateAnnouncement(@RequestBody Announcement announcement) {
 			
 		    try {
-		    	announcement.setLastDate(new Date());
 		         this.announcementService.updateAnnouncement(announcement);
 		        return ResponseEntity.ok().body(new ResponseMessage("Announcement updated successfully"));
 		    } catch (CustomException e) {

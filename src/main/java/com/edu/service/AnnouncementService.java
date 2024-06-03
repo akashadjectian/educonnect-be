@@ -57,6 +57,7 @@ public class AnnouncementService {
 	//for update the announcement
 	public Boolean updateAnnouncement(Announcement announcement) {
 		if(announcement != null) {
+			System.err.println(announcement);
 			announcementRepository.save(announcement);
 			return true;
 		}
